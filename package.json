@@ -1,0 +1,32 @@
+{
+    "name": "log4js-appender-sentry",
+    "description": "Sentry Appender for log4js-node",
+    "version": "0.0.1",
+    "license": "Apache-2.0",
+    "contributors": [
+        "Filip Seman <filip.seman@pm.me>",
+        "Daniel Derevjanik <daniel.derevjanik@gmail.com>"
+    ],
+    "keywords": [
+        "logging",
+        "log",
+        "log4js",
+        "log4js-node",
+        "node",
+        "sentry",
+        "appender"
+    ],
+    "files": [
+        "index.js",
+        "index.d.ts"
+    ],
+    "main": "./index.js",
+    "types": "./index.d.ts",
+    "scripts": {},
+    "dependencies": {
+        "@sentry/node": "~7.56.0"
+    },
+    "devDependencies": {
+        "log4js": "~6.9.0"
+    }
+}
