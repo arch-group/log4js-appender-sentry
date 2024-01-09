@@ -1,36 +1,40 @@
 {
-    "name": "log4js-appender-sentry",
-    "description": "Sentry Appender for log4js-node",
-    "version": "0.0.1",
-    "license": "Apache-2.0",
-    "homepage": "https://github.com/arch-group/log4js-appender-sentry#readme",
-    "repository": {
-        "url": "https://github.com/arch-group/log4js-appender-sentry"
-    },
-    "contributors": [
-        "Filip Seman <filip.seman@pm.me>",
-        "Daniel Derevjanik <daniel.derevjanik@gmail.com>"
-    ],
-    "keywords": [
-        "logging",
-        "log",
-        "log4js",
-        "log4js-node",
-        "node",
-        "sentry",
-        "appender"
-    ],
-    "files": [
-        "index.js",
-        "index.d.ts"
-    ],
-    "main": "./index.js",
-    "types": "./index.d.ts",
-    "scripts": {},
-    "dependencies": {
-        "@sentry/node": "~7.56.0"
-    },
-    "devDependencies": {
-        "log4js": "~6.9.0"
-    }
+	"name": "log4js-appender-sentry",
+	"description": "Sentry Appender for log4js-node",
+	"version": "0.0.1",
+	"license": "Apache-2.0",
+	"homepage": "https://github.com/arch-group/log4js-appender-sentry#readme",
+	"repository": {
+		"url": "https://github.com/arch-group/log4js-appender-sentry"
+	},
+	"contributors": [
+		"Filip Seman <filip.seman@pm.me>",
+		"Daniel Derevjanik <daniel.derevjanik@gmail.com>"
+	],
+	"keywords": [
+		"logging",
+		"log",
+		"log4js",
+		"log4js-node",
+		"node",
+		"sentry",
+		"appender"
+	],
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"main": "./index.js",
+	"types": "./index.d.ts",
+	"engines": {
+		"node": ">=18.18"
+	},
+	"scripts": {},
+	"dependencies": {
+		"@sentry/node": "~7.56.0",
+		"log4js": "~6.9.0"
+	},
+	"devDependencies": {
+		"dprint": "^0.45.0"
+	}
 }
