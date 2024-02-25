@@ -1,6 +1,12 @@
 name: release-please
 
 on:
+    workflow_dispatch:
+        inputs:
+            publish-release:
+                description: Publish the release?
+                required: true
+                default: "false"
     push:
         branches:
             - master
@@ -20,16 +26,16 @@ jobs:
                   manifest-file: .github/.release-please-manifest.json
                   config-file: .github/release-please-config.json
 
-            - if: ${{ steps.release.outputs.release_created }}
+            - if: ${{ github.event.inputs.publish-release == 'true' || steps.release.outputs.release_created }}
               uses: actions/checkout@v4
 
-            - if: ${{ steps.release.outputs.release_created }}
+            - if: ${{ github.event.inputs.publish-release == 'true' || steps.release.outputs.release_created }}
               uses: actions/setup-node@v4
               with:
                   node-version-file: ".nvmrc"
                   registry-url: "https://registry.npmjs.org"
 
-            - if: ${{ steps.release.outputs.release_created }}
+            - if: ${{ github.event.inputs.publish-release == 'true' || steps.release.outputs.release_created }}
               run: |
                   npm ci &&
                   npm run build &&
