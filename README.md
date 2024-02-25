@@ -5,6 +5,8 @@ Sends logging events to Sentry. This appender integrates
 
 [sentry_javascript]: https://github.com/getsentry/sentry-javascript
 
+![visual](docs/visual.svg)
+
 ## Installation
 
 **npm registry**

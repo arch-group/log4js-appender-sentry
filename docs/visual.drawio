@@ -1,0 +1,52 @@
+<mxfile host="65bd71144e">
+    <diagram id="qwdjv6EuC6kWKs5qn-RF" name="Page-1">
+        <mxGraphModel dx="811" dy="676" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="27" value="Push to cloud" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=default;fontSize=9;fontColor=#000000;fontFamily=JetBrains mono;" edge="1" parent="1" source="3" target="26">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Sentry SDK" style="whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=JetBrains mono;fontSize=9;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="851" y="40" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="log4js" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=JetBrains mono;fontSize=9;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="274" y="40" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="&lt;div style=&quot;line-height: 18px; font-size: 9px;&quot;&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;Sentry.captureMessage()&lt;/font&gt;&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/div&gt;" style="edgeStyle=orthogonalEdgeStyle;html=1;fontFamily=JetBrains mono;fontSize=9;fontColor=#000000;" edge="1" parent="1" source="5" target="3">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="579" y="30" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="18" value="&lt;span style=&quot;background-color: rgb(251, 251, 251); font-size: 9px;&quot;&gt;log4js.configure()&lt;/span&gt;" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=default;fontFamily=JetBrains mono;fontSize=9;fontColor=#000000;" edge="1" parent="1" source="4" target="5">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="496" y="80"/>
+                            <mxPoint x="496" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="capture log.error()" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=default;fontSize=9;fontColor=#000000;fontFamily=JetBrains mono;" edge="1" parent="1" source="5" target="4">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="486" y="60"/>
+                            <mxPoint x="486" y="60"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="log4js-appender-sentry" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=JetBrains mono;fontSize=9;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="564" y="40" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="log.error()" style="edgeStyle=orthogonalEdgeStyle;html=1;fontFamily=JetBrains mono;fontSize=9;fontColor=#000000;" edge="1" parent="1" source="10" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="app" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=JetBrains mono;fontSize=9;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="40" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Sentry" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=9;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=JetBrains mono;" vertex="1" parent="1">
+                    <mxGeometry x="886" y="149" width="60" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
