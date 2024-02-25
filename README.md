@@ -1,7 +1,9 @@
-# Sentry log4js appender
+# log4js appender - Sentry
 
 Sends logging events to Sentry. This appender integrates
 [@sentry/node][sentry_javascript].
+
+[sentry_javascript]: https://github.com/getsentry/sentry-javascript
 
 ## Installation
 
@@ -11,31 +13,9 @@ Sends logging events to Sentry. This appender integrates
 npm install log4js-appender-sentry
 ```
 
-## Options
-
-The [`SentryAppender`][internal_types] interface extends the `NodeClientOptions`
-interface and provides additional options specific to the Node Sentry appender
-SDK.
-
-Sentry is mainly used to report application errors so the default log level is
-`WARN` and above, other log levels will be ignored.
-
-**`type`**
-
-The type of the appender, must be set to `log4js-appender-sentry`.
-
-**`dsn`**
-
-A DSN tells a Sentry SDK where to send events so the events are associated with
-the correct project. See [documentation][sentry_dsn].
-
-**`user`**
-
-User data for scope configuration. See [documentation][sentry_user].
-
 ## Configuration
 
-**TypeScript**
+### TypeScript
 
 If you're using TypeScript, importing this library as a side effect will
 automatically merge the log4js interface `Appenders`. This merging enables
@@ -43,31 +23,82 @@ autocomplete for the appenders configuration, providing convenient access to its
 properties.
 
 ```ts
-import "log4js-appender-sentry"
+import "log4js-appender-sentry";
 ```
 
-**example**
+### Example
 
-```json {3-6, 12}
-{
-    "appenders": {
-        "sentry": {
-            "type": "log4js-appender-sentry",
-            "dsn": "..."
-        }
-    },
-    "categories": {
-        "default": {
-            "level": "debug",
-            "appenders": [
-                "sentry"
-            ]
-        }
-    }
+```ts
+import log4js from "log4js";
+
+import "log4js-appender-cloudwatch";
+
+log4js.configure({
+	appenders: {
+		sentry: {
+			type: "log4js-appender-sentry",
+			dsn: "<config>",
+			user: {
+				// ...
+			},
+		},
+	},
+	categories: {
+		default: {
+			level: "debug",
+			appenders: [
+				"sentry",
+			],
+		},
+	},
+});
+
+const log = log4js.getLogger();
+// ...
+```
+
+## Options
+
+Sentry is mainly used to report application errors so the default log level is
+`WARN` and above, other log levels will be ignored.
+
+### type
+
+_Required_\
+Type: log4js-appender-sentry
+
+The type of the appender. Must be set to `log4js-appender-sentry`.
+
+### dsn
+
+_Required_\
+Type: `string`
+
+A DSN (Data Source Name) specifies where the Sentry SDK should send events,
+ensuring they are associated with the correct project. Refer to the Sentry
+[documentation][sentry_dsn] for more details on DSN.
+
+[sentry_dsn]: https://docs.sentry.io/product/sentry-basics/dsn-explainer/
+
+### user
+
+_Optional_\
+Type: `User`
+
+```ts
+// import { User } from "@sentry/node/types";
+
+interface User {
+	[key: string]: any;
+	id?: string;
+	ip_address?: string;
+	email?: string;
+	username?: string;
+	segment?: string;
 }
 ```
 
-[internal_types]: ./index.d.ts
-[sentry_javascript]: https://github.com/getsentry/sentry-javascript
+User data used for scope configuration. For additional information, see the
+Sentry user [documentation][sentry_user].
+
 [sentry_user]: https://docs.sentry.io/platforms/javascript/enriching-events/identify-user/
-[sentry_dsn]: https://docs.sentry.io/product/sentry-basics/dsn-explainer/

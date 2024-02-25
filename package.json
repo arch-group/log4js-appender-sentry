@@ -21,20 +21,28 @@
 		"appender"
 	],
 	"files": [
-		"index.js",
-		"index.d.ts"
+		"./dist"
 	],
-	"main": "./index.js",
-	"types": "./index.d.ts",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"engines": {
 		"node": ">=18.18"
 	},
-	"scripts": {},
+	"scripts": {
+		"build": "tsc",
+		"pretest": "tsc",
+		"typecheck": "tsc --noEmit",
+		"test": "node --test --loader=ts-node/esm index.test.mts",
+		"test:watch": "node --test --watch --loader=ts-node/esm index.test.mts"
+	},
 	"dependencies": {
-		"@sentry/node": "~7.56.0",
+		"@sentry/node": "~7.102.0",
 		"log4js": "~6.9.0"
 	},
 	"devDependencies": {
-		"dprint": "^0.45.0"
+		"dprint": "^0.45.0",
+		"@types/node": "~18.18.0",
+		"ts-node": "~10.9.0",
+		"typescript": "~5.3.0"
 	}
 }
