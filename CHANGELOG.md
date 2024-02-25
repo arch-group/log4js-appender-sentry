@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.1](https://github.com/arch-group/log4js-appender-sentry/compare/v0.1.0...v0.1.1) (2024-02-25)
+
+
+### Documentation
+
+* add diagram ([eee88ed](https://github.com/arch-group/log4js-appender-sentry/commit/eee88ed51ea628511dc01bfb59aba45fb4b7a1d8))
+
+
+### Maintenance
+
+* add manuall publish dispatch ([11d707e](https://github.com/arch-group/log4js-appender-sentry/commit/11d707e64682f6629f6f4bc37d65dd9edf89a5d7))
+
 ## [0.1.0](https://github.com/arch-group/log4js-appender-sentry/compare/v0.0.1...v0.1.0) (2024-02-25)
 
 
