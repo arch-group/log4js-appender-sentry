@@ -23,10 +23,16 @@
 	"files": [
 		"./dist"
 	],
-	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/index.js"
+		}
+	},
 	"engines": {
-		"node": ">=18.18"
+		"node": ">=18.18",
+		"npm": ">=7"
 	},
 	"scripts": {
 		"build": "tsc",
@@ -36,13 +42,15 @@
 		"test:watch": "node --test --watch --loader=ts-node/esm index.test.mts"
 	},
 	"dependencies": {
-		"@sentry/node": "~7.102.0",
-		"log4js": "~6.9.0"
+		"@sentry/node": "~8.2.0"
 	},
 	"devDependencies": {
 		"dprint": "^0.45.0",
 		"@types/node": "~18.18.0",
 		"ts-node": "~10.9.0",
-		"typescript": "~5.3.0"
+		"typescript": "~5.4.5"
+	},
+	"peerDependencies": {
+		"log4js": ">=6"
 	}
 }
