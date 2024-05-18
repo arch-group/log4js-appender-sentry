@@ -20,11 +20,12 @@ jobs:
     release-please:
         runs-on: ubuntu-latest
         steps:
-            - uses: google-github-actions/release-please-action@v4
+            - uses: googleapis/release-please-action@v4
               id: release
               with:
                   manifest-file: .github/.release-please-manifest.json
                   config-file: .github/release-please-config.json
+                  token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
 
             - if: ${{ github.event.inputs.publish-release == 'true' || steps.release.outputs.release_created }}
               uses: actions/checkout@v4
@@ -36,9 +37,9 @@ jobs:
                   registry-url: "https://registry.npmjs.org"
 
             - if: ${{ github.event.inputs.publish-release == 'true' || steps.release.outputs.release_created }}
-              run: |
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: >
                   npm ci &&
                   npm run build &&
                   npm publish --provenance --access public
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
