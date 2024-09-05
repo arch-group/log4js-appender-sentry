@@ -42,13 +42,13 @@
 		"test:watch": "node --test --watch --loader=ts-node/esm index.test.mts"
 	},
 	"dependencies": {
-		"@sentry/node": "~8.2.0"
+		"@sentry/node": "~8.28.0"
 	},
 	"devDependencies": {
-		"dprint": "^0.45.0",
+		"dprint": "^0.47.0",
 		"@types/node": "~18.18.0",
 		"ts-node": "~10.9.0",
-		"typescript": "~5.4.5"
+		"typescript": "~5.5.0"
 	},
 	"peerDependencies": {
 		"log4js": ">=6"
