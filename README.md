@@ -9,10 +9,10 @@ Sends logging events to Sentry. This appender integrates
 
 ## Installation
 
-**npm registry**
-
 ```sh
 npm install log4js-appender-sentry
+# or
+bun add log4js-appender-sentry
 ```
 
 ## Configuration
@@ -33,7 +33,7 @@ import "log4js-appender-sentry";
 ```ts
 import log4js from "log4js";
 
-import "log4js-appender-cloudwatch";
+import "log4js-appender-sentry";
 
 log4js.configure({
 	appenders: {
