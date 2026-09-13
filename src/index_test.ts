@@ -79,3 +79,38 @@ describe("Sentry appender", () => {
 		expect(events[0].user).toMatchObject({ id: "42" });
 	});
 });
+
+describe("log4js integration", () => {
+	test("configure uses the log4js layout and shutdown completes", async () => {
+		const events: ErrorEvent[] = [];
+
+		log4js.configure({
+			appenders: {
+				sentry: {
+					type: require.resolve("./index.ts"),
+					dsn: "https://public@127.0.0.1/1",
+					defaultIntegrations: false,
+					beforeSend: (event: ErrorEvent) => {
+						events.push(event);
+						return null;
+					},
+				},
+			},
+			categories: {
+				default: { appenders: ["sentry"], level: "debug" },
+			},
+		});
+
+		const logger = log4js.getLogger("integration");
+		logger.info("ignored");
+		logger.error("boom");
+		await Sentry.flush(1000);
+
+		expect(events).toHaveLength(1);
+		expect(events[0].level).toBe("error");
+		expect(events[0].message).toContain("[ERROR] integration - boom");
+
+		const error = await new Promise((resolve) => log4js.shutdown(resolve));
+		expect(error).toBeUndefined();
+	});
+});

@@ -93,10 +93,10 @@ export function sentry(
 		});
 	}
 
-	// @ts-ignore
-	(appender.shutdown as Log4js["shutdown"]) = (_error) => {
-		Sentry.close();
-	};
+	// log4js waits until every appender calls the shutdown callback.
+	appender.shutdown = ((done) => {
+		Sentry.close().then(() => done?.(), done);
+	}) satisfies Log4js["shutdown"];
 
 	return appender;
 }
