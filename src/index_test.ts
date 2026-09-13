@@ -15,7 +15,10 @@ import { dummyLayout } from "log4js/lib/layouts";
 // @ts-ignore: missing type definitions
 import LoggingEvent from "log4js/lib/LoggingEvent.js";
 
-import { sentry } from "./index.js";
+import {
+	ConfigError,
+	sentry,
+} from "./index.js";
 
 function makeLogEvent(level: log4js.Level, data: unknown[] = ["test"]): log4js.LoggingEvent {
 	return new LoggingEvent("default", level, data, {});
@@ -77,6 +80,18 @@ describe("Sentry appender", () => {
 		expect(events).toHaveLength(1);
 		expect(events[0].extra).toMatchObject({ category: "default" });
 		expect(events[0].user).toMatchObject({ id: "42" });
+	});
+});
+
+describe("ConfigError", () => {
+	test("keeps name, message and cause", () => {
+		const cause = new Error("root");
+		const error = new ConfigError("invalid config", cause);
+
+		expect(error).toBeInstanceOf(Error);
+		expect(error.name).toBe("ConfigError");
+		expect(error.message).toBe("invalid config");
+		expect(error.cause).toBe(cause);
 	});
 });
 
