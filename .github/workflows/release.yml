@@ -1,0 +1,81 @@
+name: Release Please
+
+on:
+    push:
+        branches:
+            - master
+    workflow_dispatch:
+        inputs:
+            npm_release:
+                description: "Publish npm package"
+                type: boolean
+                default: false
+            npm_tag:
+                description: "Tag or ref to publish from (e.g., v0.1.0)"
+                type: string
+                required: false
+
+permissions:
+    contents: write
+    issues: write
+    pull-requests: write
+
+jobs:
+    release-please:
+        name: Release Please
+        runs-on: ubuntu-latest
+        outputs:
+            release_created: ${{ steps.release.outputs.release_created }}
+            tag_name: ${{ steps.release.outputs.tag_name }}
+            version: ${{ steps.release.outputs.version }}
+        steps:
+            - uses: googleapis/release-please-action@v4
+              id: release
+              with:
+                  config-file: .github/.release-config.json
+                  manifest-file: .github/.release-manifest.json
+                  token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+
+    publish:
+        name: Publish To npm
+        needs: release-please
+        if: ${{ (github.event_name == 'push' && needs.release-please.outputs.release_created) || (github.event_name == 'workflow_dispatch' && inputs.npm_release == true) }}
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
+        steps:
+            - uses: actions/checkout@v6
+              if: ${{ github.event_name == 'push' || inputs.npm_tag == '' }}
+
+            - uses: actions/checkout@v6
+              if: ${{ github.event_name == 'workflow_dispatch' && inputs.npm_tag != '' }}
+              with:
+                  ref: ${{ inputs.npm_tag }}
+
+            # No registry-url: it makes setup-node write an .npmrc with a placeholder
+            # NODE_AUTH_TOKEN, which npm would use instead of exchanging the OIDC token.
+            - uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+
+            - uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: latest
+
+            # Trusted publishing needs npm >= 11.5.1, newer than the one Node bundles.
+            - name: Update npm
+              run: |
+                  npm install -g npm@latest
+                  npm --version
+
+            - name: Install dependencies
+              run: bun install --frozen-lockfile
+
+            - name: Build package
+              run: bun run build
+
+            # Authentication comes from the OIDC token, so no npm token is needed.
+            # The trusted publisher on npmjs.com must name this workflow file.
+            - name: Publish package
+              run: npm publish --provenance --access public
