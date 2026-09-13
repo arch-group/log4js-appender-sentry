@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/xseman/log4js-appender-sentry/compare/v0.1.2...v0.1.3) (2026-09-13)
+
+
+### Build System
+
+* migrate to bun, publish via npm trusted publisher & fix shutdown ([#6](https://github.com/xseman/log4js-appender-sentry/issues/6)) ([b2b67ad](https://github.com/xseman/log4js-appender-sentry/commit/b2b67ad9b35faf1dbfcb9b44d495495dca2bb419))
+
 ## [0.1.2](https://github.com/xseman/log4js-appender-sentry/compare/v0.1.1...v0.1.2) (2025-03-31)
 
 
