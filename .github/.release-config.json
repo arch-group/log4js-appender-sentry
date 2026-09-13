@@ -1,12 +1,16 @@
 {
 	"$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+	"include-v-in-tag": true,
+	"include-component-in-tag": false,
 	"packages": {
 		".": {
 			"release-type": "node",
-			"include-v-in-tag": true,
-			"include-component-in-tag": false,
+			"package-name": "log4js-appender-sentry",
+			"changelog-path": "CHANGELOG.md",
+			"bump-minor-pre-major": true,
+			"bump-patch-for-minor-pre-major": true,
 			"pull-request-title-pattern": "v${version}",
-			"pull-request-header": "",
+			"pull-request-header": "🚢 package release",
 			"pull-request-footer": ""
 		}
 	},
@@ -14,16 +18,16 @@
 		{ "type": "feat", "section": "Features" },
 		{ "type": "fix", "section": "Bug Fixes" },
 		{ "type": "perf", "section": "Performance Improvements" },
-		{ "type": "deps", "section": "Dependency updates" },
+		{ "type": "type", "section": "Types" },
+		{ "type": "deps", "section": "Dependency Updates" },
 		{ "type": "docs", "section": "Documentation" },
+		{ "type": "build", "section": "Build System" },
 		{ "type": "ci", "section": "Maintenance" },
-		{ "type": "build", "section": "Maintenance" },
 		{ "type": "chore", "section": "Maintenance" },
-		{ "type": "revert", "section": "Maintenance" },
+		{ "type": "config", "section": "Maintenance" },
+		{ "type": "refactor", "section": "Maintenance" },
+		{ "type": "revert", "section": "Reverts" },
 		{ "type": "security", "section": "Security" },
-		{ "type": "refactor", "section": "Refactors" },
-		{ "type": "test", "section": "Tests" },
-		{ "type": "style", "section": "Code Style", "hidden": true },
-		{ "type": "examples", "section": "Examples", "hidden": true }
+		{ "type": "test", "section": "Testing" }
 	]
 }
