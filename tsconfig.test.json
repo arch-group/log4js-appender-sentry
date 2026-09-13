@@ -1,0 +1,11 @@
+{
+	// Tests are excluded from the build config, which restricts `types` to what
+	// consumers have. They run on Bun, so they get Bun's types here.
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"noEmit": true,
+		"types": ["node", "bun"]
+	},
+	"include": ["src/**/*_test.ts"],
+	"exclude": []
+}

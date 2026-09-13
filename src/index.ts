@@ -6,10 +6,10 @@ import * as Sentry from "@sentry/node";
 import { dummyLayout } from "log4js/lib/layouts";
 
 import type {
+	NodeOptions,
 	SeverityLevel,
 	User,
 } from "@sentry/node";
-import type { NodeClientOptions } from "@sentry/node/build/types/types";
 import type {
 	AppenderFunction,
 	LayoutFunction,
@@ -19,7 +19,7 @@ import type {
 	LoggingEvent,
 } from "log4js";
 
-export interface Config extends Partial<NodeClientOptions> {
+export interface Config extends Partial<NodeOptions> {
 	/**
 	 * The Data Source Name (DSN) for connecting to the Sentry server.
 	 *
